@@ -49,4 +49,16 @@ public class QueryProcessorTest {
         String query = "af1a6f30: which of the following numbers is the largest: 57, 231, 970, 97";
         assertEquals("970", queryProcessor.process(query));
     }
+
+    @Test
+    public void canAddTwoNumbersFullQuery() {
+        String query = "79c07220: what is 4 plus 13";
+        assertEquals("17", queryProcessor.process(query));
+    }
+
+    @Test
+    public void canMultiplyTwoNumbers() {
+        String query = "457c8be0: what is 19 multiplied by 14";
+        assertEquals("266", queryProcessor.process(query));
+    }
 }

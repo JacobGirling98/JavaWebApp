@@ -21,23 +21,40 @@ public class QueryProcessor {
             return "CrypticFortress";
         } else if (query.toLowerCase().contains("which of the following numbers is the largest")) {
             return findLargestNumber(query);
-        } else if (query.toLowerCase().contains("what is")) {
-            List<String> split = Arrays.asList(query.toLowerCase().split(":"));
+        } else if (query.toLowerCase().contains("plus")) {
+            return addTwoNumbersFrom(query);
+        } else if (query.toLowerCase().contains("multiplied")) {
+            List<String> split = splitByColon(query);
             List<String> statement = Arrays.asList(split.get(1).split(" "));
-            Integer firstNum = Integer.parseInt(statement.get(3).trim());
-            Integer secondNum = Integer.parseInt(statement.get(5).trim());
-            int answer = firstNum + secondNum;
-            return Integer.toString(answer);
+            Integer firstNum = getIntByIndex(statement, 3);
+            Integer secondNum = getIntByIndex(statement, 6);
+            return Integer.toString(firstNum * secondNum);
         }
         return "";
     }
 
+    private String addTwoNumbersFrom(String query) {
+        List<String> split = splitByColon(query);
+        List<String> statement = Arrays.asList(split.get(1).split(" "));
+        Integer firstNum = getIntByIndex(statement, 3);
+        Integer secondNum = getIntByIndex(statement, 5);
+        return Integer.toString(firstNum + secondNum);
+    }
+
+    private int getIntByIndex(List<String> statement, int i) {
+        return Integer.parseInt(statement.get(i).trim());
+    }
+
     private String findLargestNumber(String query) {
-        List<String> split = Arrays.asList(query.toLowerCase().split(":"));
+        List<String> split = splitByColon(query);
         List<Integer> numbers = Arrays.stream(split.get(2).split(","))
                 .map(num -> Integer.parseInt(num.trim()))
                 .sorted()
                 .collect(Collectors.toList());
-        return numbers.get(numbers.size() - 1 ).toString();
+        return numbers.get(numbers.size() - 1).toString();
+    }
+
+    private List<String> splitByColon(String query) {
+        return Arrays.asList(query.toLowerCase().split(":"));
     }
 }
