@@ -13,8 +13,7 @@ public class QueryProcessorTest {
 
     @Test
     public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
-        fail("Testing");
-//        assertThat(queryProcessor.process("test"), is(""));
+        assertThat(queryProcessor.process("test"), is(""));
     }
 
     @Test
