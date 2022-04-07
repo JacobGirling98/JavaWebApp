@@ -9,6 +9,7 @@ public class QueryProcessor {
     public String process(String query) {
 
 //        which of the following numbers is the largest: 2, 55, 520, 814
+//        what is 2 plus 15
 
         System.out.println(query);
 
@@ -20,6 +21,12 @@ public class QueryProcessor {
             return "CrypticFortress";
         } else if (query.toLowerCase().contains("which of the following numbers is the largest")) {
             return findLargestNumber(query);
+        } else if (query.toLowerCase().contains("what is")) {
+            List<String> split = Arrays.asList(query.toLowerCase().split(" "));
+            Integer firstNum = Integer.parseInt(split.get(2).trim());
+            Integer secondNum = Integer.parseInt(split.get(4).trim());
+            int answer = firstNum + secondNum;
+            return Integer.toString(answer);
         }
         return "";
     }

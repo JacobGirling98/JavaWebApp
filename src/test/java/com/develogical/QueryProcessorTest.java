@@ -37,4 +37,10 @@ public class QueryProcessorTest {
         String query = "which of the following numbers is the largest: 2, 55, 520, 814";
         assertEquals("814", queryProcessor.process(query));
     }
+
+    @Test
+    public void canAddTwoNumbers() {
+        String query = "what is 2 plus 15";
+        assertEquals("17", queryProcessor.process(query));
+    }
 }
