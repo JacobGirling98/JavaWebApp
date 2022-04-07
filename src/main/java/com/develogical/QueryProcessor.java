@@ -22,9 +22,10 @@ public class QueryProcessor {
         } else if (query.toLowerCase().contains("which of the following numbers is the largest")) {
             return findLargestNumber(query);
         } else if (query.toLowerCase().contains("what is")) {
-            List<String> split = Arrays.asList(query.toLowerCase().split(" "));
-            Integer firstNum = Integer.parseInt(split.get(2).trim());
-            Integer secondNum = Integer.parseInt(split.get(4).trim());
+            List<String> split = Arrays.asList(query.toLowerCase().split(":"));
+            List<String> statement = Arrays.asList(split.get(1).split(" "));
+            Integer firstNum = Integer.parseInt(statement.get(3).trim());
+            Integer secondNum = Integer.parseInt(statement.get(5).trim());
             int answer = firstNum + secondNum;
             return Integer.toString(answer);
         }

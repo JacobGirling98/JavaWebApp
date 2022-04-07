@@ -40,7 +40,7 @@ public class QueryProcessorTest {
 
     @Test
     public void canAddTwoNumbers() {
-        String query = "what is 2 plus 15";
+        String query = "asdfsadfds: what is 2 plus 15";
         assertEquals("17", queryProcessor.process(query));
     }
 
