@@ -80,11 +80,11 @@ public class QueryProcessorTest {
         assertEquals("", queryProcessor.process(query));
     }
 
-//    @Test
-//    public void whatColourIs() {
-//        String query = "5041ce20: what colour is a banana";
-//        assertEquals("yellow", queryProcessor.process(query));
-//    }
+    @Test
+    public void whatColourIs() {
+        String query = "5041ce20: what colour is a banana";
+        assertEquals("yellow", queryProcessor.process(query));
+    }
 
     @Test
     public void primeNumbers() {

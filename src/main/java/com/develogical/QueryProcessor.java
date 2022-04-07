@@ -33,16 +33,24 @@ public class QueryProcessor {
         } else if (lowerCaseQuery.contains("numbers are primes")) {
             return findPrimes(query);
         } else if (lowerCaseQuery.contains("fibonacci sequence")) {
-            List<String> split = splitByColon(query);
+            return fibonacciFrom(query);
+        } else if(lowerCaseQuery.contains("what colour is a banana")) {
+            return "yellow";
+        }
+        return "";
+    }
 
-            final Pattern pattern = Pattern.compile("what is the ([0-9]+)th number in the Fibonacci sequence", Pattern.CASE_INSENSITIVE);
-            // Match regex against input
-            String input = split.get(1).trim();
-            final Matcher matcher = pattern.matcher(input);
-            // Use results...
-            boolean test = matcher.matches();
+    private String fibonacciFrom(String query) {
+        List<String> split = splitByColon(query);
 
-            String index = matcher.group(1);
+        final Pattern pattern = Pattern.compile("what is the ([0-9]+)th number in the Fibonacci sequence", Pattern.CASE_INSENSITIVE);
+        // Match regex against input
+        String input = split.get(1).trim();
+        final Matcher matcher = pattern.matcher(input);
+        // Use results...
+        boolean test = matcher.matches();
+
+        String index = matcher.group(1);
 
 //            String indexStr = Arrays.stream(split.get(1).split(" "))
 //                    .filter(text -> text.contains("th"))
@@ -51,9 +59,7 @@ public class QueryProcessor {
 //
 //
 //            int index = Integer.parseInt(indexStr.substring(0, 2));
-            return String.valueOf(fibonacci(Integer.parseInt(index) - 1));
-        }
-        return "";
+        return String.valueOf(fibonacci(Integer.parseInt(index) - 1));
     }
 
     private int fibonacci(int index) {
