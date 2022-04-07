@@ -36,6 +36,8 @@ public class QueryProcessor {
             return fibonacciFrom(query);
         } else if(lowerCaseQuery.contains("what colour is a banana")) {
             return "yellow";
+        } else if (lowerCaseQuery.contains("which city is the eiffel tower in")) {
+            return "Paris";
         }
         return "";
     }
@@ -52,13 +54,6 @@ public class QueryProcessor {
 
         String index = matcher.group(1);
 
-//            String indexStr = Arrays.stream(split.get(1).split(" "))
-//                    .filter(text -> text.contains("th"))
-//                    .findFirst()
-//                    .get();
-//
-//
-//            int index = Integer.parseInt(indexStr.substring(0, 2));
         return String.valueOf(fibonacci(Integer.parseInt(index) - 1));
     }
 

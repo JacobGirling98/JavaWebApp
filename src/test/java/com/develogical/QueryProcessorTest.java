@@ -97,4 +97,10 @@ public class QueryProcessorTest {
         String query = "1d0e5e20: what is the 18th number in the Fibonacci sequence";
         assertEquals("2584", queryProcessor.process(query));
     }
+
+    @Test
+    public void eiffelTower() {
+        String query = "asdfsadfa: which city is the Eiffel tower in";
+        assertEquals("Paris", queryProcessor.process(query));
+    }
 }
