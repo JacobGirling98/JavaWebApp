@@ -91,4 +91,10 @@ public class QueryProcessorTest {
         String query = "860f9740: which of the following numbers are primes: 439, 618, 53, 449";
         assertEquals("439,53,449",queryProcessor.process(query));
     }
+
+    @Test
+    public void finbonacciSequence() {
+        String query = "1d0e5e20: what is the 18th number in the Fibonacci sequence";
+        assertEquals("2584", queryProcessor.process(query));
+    }
 }

@@ -2,6 +2,8 @@ package com.develogical;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class QueryProcessor {
@@ -13,30 +15,62 @@ public class QueryProcessor {
 
         System.out.println(query);
 
-        if (query.toLowerCase().contains("shakespeare")) {
+        String lowerCaseQuery = query.toLowerCase();
+        if (lowerCaseQuery.contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
                     "English poet, playwright, and actor, widely regarded as the greatest " +
                     "writer in the English language and the world's pre-eminent dramatist.";
-        } else if(query.toLowerCase().contains("your name")) {
+        } else if(lowerCaseQuery.contains("your name")) {
             return "CrypticFortress";
-        } else if (query.toLowerCase().contains("which of the following numbers is the largest")) {
+        } else if (lowerCaseQuery.contains("which of the following numbers is the largest")) {
             return findLargestNumber(query);
-        } else if (query.toLowerCase().contains("plus")) {
+        } else if (lowerCaseQuery.contains("plus")) {
             return addTwoNumbersFrom(query);
-        } else if (query.toLowerCase().contains("multiplied")) {
+        } else if (lowerCaseQuery.contains("multiplied")) {
             return multiplyTwoNumbersFrom(query);
-        } else if (query.toLowerCase().contains("square and a cube")) {
+        } else if (lowerCaseQuery.contains("square and a cube")) {
             return findSquaredAndCubedNumbers(query);
-        } else if (query.toLowerCase().contains("numbers are primes")) {
+        } else if (lowerCaseQuery.contains("numbers are primes")) {
+            return findPrimes(query);
+        } else if (lowerCaseQuery.contains("fibonacci sequence")) {
             List<String> split = splitByColon(query);
-            List<String> statement = Arrays.asList(split.get(2).split(","));
-            return statement.stream()
-                    .map(num -> Integer.parseInt(num.trim()))
-                    .filter(num -> isPrime(num))
-                    .map(num -> num.toString())
-                    .collect(Collectors.joining(","));
+
+            final Pattern pattern = Pattern.compile("what is the ([0-9]+)th number in the Fibonacci sequence", Pattern.CASE_INSENSITIVE);
+            // Match regex against input
+            String input = split.get(1).trim();
+            final Matcher matcher = pattern.matcher(input);
+            // Use results...
+            boolean test = matcher.matches();
+
+            String index = matcher.group(1);
+
+//            String indexStr = Arrays.stream(split.get(1).split(" "))
+//                    .filter(text -> text.contains("th"))
+//                    .findFirst()
+//                    .get();
+//
+//
+//            int index = Integer.parseInt(indexStr.substring(0, 2));
+            return String.valueOf(fibonacci(Integer.parseInt(index) - 1));
         }
         return "";
+    }
+
+    private int fibonacci(int index) {
+        if (index < 2) {
+            return 1;
+        }
+        return fibonacci(index - 1) + fibonacci(index - 2);
+    }
+
+    private String findPrimes(String query) {
+        List<String> split = splitByColon(query);
+        List<String> statement = Arrays.asList(split.get(2).split(","));
+        return statement.stream()
+                .map(num -> Integer.parseInt(num.trim()))
+                .filter(num -> isPrime(num))
+                .map(num -> num.toString())
+                .collect(Collectors.joining(","));
     }
 
     private boolean isPrime(int number) {
