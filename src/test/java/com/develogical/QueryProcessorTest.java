@@ -73,4 +73,10 @@ public class QueryProcessorTest {
         String query = "9f764750: which of the following numbers is both a square and a cube: 1, 64";
         assertEquals("1,64", queryProcessor.process(query));
     }
+
+    @Test
+    public void multipleNumbersSquareOrCube() {
+        String query = "62d93000: which of the following numbers is both a square and a cube: 600, 310, 169, 529";
+        assertEquals("", queryProcessor.process(query));
+    }
 }
