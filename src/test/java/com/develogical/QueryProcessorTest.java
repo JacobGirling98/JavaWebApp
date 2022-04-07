@@ -61,4 +61,16 @@ public class QueryProcessorTest {
         String query = "457c8be0: what is 19 multiplied by 14";
         assertEquals("266", queryProcessor.process(query));
     }
+
+    @Test
+    public void neitherIsSquareOrCube() {
+        String query = "9f764750: which of the following numbers is both a square and a cube: 36, 685";
+        assertEquals("", queryProcessor.process(query));
+    }
+
+    @Test
+    public void oneIsSquareOrCube() {
+        String query = "9f764750: which of the following numbers is both a square and a cube: 1, 64";
+        assertEquals("1,64", queryProcessor.process(query));
+    }
 }
