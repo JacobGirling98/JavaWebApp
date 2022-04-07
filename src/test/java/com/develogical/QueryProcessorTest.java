@@ -34,7 +34,7 @@ public class QueryProcessorTest {
 
     @Test
     public void canGetLargestNumber() {
-        String query = "which of the following numbers is the largest: 2, 55, 520, 814";
+        String query = "asdfsd:which of the following numbers is the largest: 2, 55, 520, 814";
         assertEquals("814", queryProcessor.process(query));
     }
 
@@ -42,5 +42,11 @@ public class QueryProcessorTest {
     public void canAddTwoNumbers() {
         String query = "what is 2 plus 15";
         assertEquals("17", queryProcessor.process(query));
+    }
+
+    @Test
+    public void canReadLargestNumberWithFullQuery() {
+        String query = "af1a6f30: which of the following numbers is the largest: 57, 231, 970, 97";
+        assertEquals("970", queryProcessor.process(query));
     }
 }

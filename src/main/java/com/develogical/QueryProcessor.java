@@ -33,7 +33,7 @@ public class QueryProcessor {
 
     private String findLargestNumber(String query) {
         List<String> split = Arrays.asList(query.toLowerCase().split(":"));
-        List<Integer> numbers = Arrays.stream(split.get(1).split(","))
+        List<Integer> numbers = Arrays.stream(split.get(2).split(","))
                 .map(num -> Integer.parseInt(num.trim()))
                 .sorted()
                 .collect(Collectors.toList());
