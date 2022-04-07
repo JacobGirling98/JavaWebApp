@@ -26,3 +26,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "cryptic-fortress-73300" #Must be unique in Heroku
           heroku_email: "jacob.girling@db.com"
+
