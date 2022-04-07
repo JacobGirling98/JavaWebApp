@@ -79,4 +79,16 @@ public class QueryProcessorTest {
         String query = "62d93000: which of the following numbers is both a square and a cube: 600, 310, 169, 529";
         assertEquals("", queryProcessor.process(query));
     }
+
+//    @Test
+//    public void whatColourIs() {
+//        String query = "5041ce20: what colour is a banana";
+//        assertEquals("yellow", queryProcessor.process(query));
+//    }
+
+    @Test
+    public void primeNumbers() {
+        String query = "860f9740: which of the following numbers are primes: 439, 618, 53, 449";
+        assertEquals("439,53,449",queryProcessor.process(query));
+    }
 }
